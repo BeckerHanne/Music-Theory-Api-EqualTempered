@@ -1,0 +1,3 @@
+# Music Theory API
+
+This API encodes music theory as it exists within the modern equal temperament tradition and what is generally known as the common practice period. It does not — and at this stage cannot — capture the full complexity of Western music's historical and improvisatory traditions, where much of the profound musical knowledge was ironically not written down, but instead passed along through a combination of oral and improvised tradition.
