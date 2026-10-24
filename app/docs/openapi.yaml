@@ -1,0 +1,93 @@
+openapi: 3.0.3
+info:
+  title: Music Theory API
+  description: |
+    A REST API that answers music theory questions programmatically —
+    scales, chords, intervals, and Roman numeral analysis served as
+    clean, well-documented JSON.
+
+    **Important caveat:** This API models music theory within the 12-tone
+    equal temperament system. It does not capture the full complexity of
+    Western music's historical and improvisatory traditions. Historical
+    tuning system support (Pythagorean, meantone, well temperament) is
+    planned for a future version.
+  version: 1.0.0
+servers:
+  - url: /api
+    description: API base URL
+
+components:
+  schemas:
+    Scale:
+      type: object
+      properties:
+        tonic:
+          type: string
+          description: The root note of the scale
+          example: "F#"
+        mode:
+          type: string
+          description: The mode or scale type
+          example: "major"
+        scale:
+          type: array
+          items:
+            type: string
+          description: |
+            The notes of the scale in ascending order, spelled correctly
+            according to music theory conventions. For example, F# major
+            returns E# (not F) as the seventh degree.
+          example: ["F#", "G#", "A#", "B", "C#", "D#", "E#"]
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: A description of the error
+          example: "Invalid tonic: Z"
+
+paths:
+  /scales/{tonic}/{mode}:
+    get:
+      summary: Get a scale
+      description: |
+        Returns the notes of a scale given a tonic and mode, with correct
+        enharmonic spelling. Supports major, natural minor, and harmonic minor.
+
+        Supported tonics: C, C#, D, Db, E, Eb, F, F#, G, Gb, G#, A, A#, B, Bb, B#
+
+        Supported modes: major, natural_minor, harmonic_minor
+      tags:
+        - Scales
+      parameters:
+        - name: tonic
+          in: path
+          required: true
+          schema:
+            type: string
+          description: |
+            The root note of the scale using German music notation.
+            Sharps use the suffix "is" (e.g., "Fis" for F#), and flats use the suffix "es" (e.g., "Es" for Eb). 
+            Note the exeptions at English letter B (H in German) and Bb (B in German)!!
+          example: "Fis"
+        - name: mode
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [major, natural_minor, harmonic_minor]
+          description: The mode or scale type
+          example: "major"
+      responses:
+        "200":
+          description: Scale retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Scale"
+        "400":
+          description: Invalid tonic or unsupported mode
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"

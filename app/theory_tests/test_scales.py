@@ -1,4 +1,4 @@
-from app.theory import get_scale
+from app.theory.scales import get_scale
 
 def test_c_major():
     assert get_scale('C', 'major') == ['C', 'D', 'E', 'F', 'G', 'A', 'B']
