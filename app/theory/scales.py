@@ -15,3 +15,8 @@ def get_scale(tonic: str, mode: str) -> list[str]:
     root = CHROMATIC_SCALE.index(tonic)
     intervals = SCALE_INTERVALS[mode]
     return [CHROMATIC_SCALE[(root + i) % 12] for i in intervals]
+
+if __name__ == "__main__":
+    print(get_scale('C', 'major'))
+    print(get_scale('A', 'natural_minor'))
+    print(get_scale('D', 'harmonic_minor'))
