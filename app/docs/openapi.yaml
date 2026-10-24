@@ -52,9 +52,15 @@ paths:
       summary: Get a scale
       description: |
         Returns the notes of a scale given a tonic and mode, with correct
-        enharmonic spelling. Supports major, natural minor, and harmonic minor.
+        enharmonic spelling. 
 
-        Supported tonics: C, C#, D, Db, E, Eb, F, F#, G, Gb, G#, A, A#, B, Bb, B#
+        Tonics in this API inputs need to use German music notation to overcome shortcomings in SwaggerUI URL encodings for # symbols:
+        - Natural notes are: C, D, E, F, G, A, H
+        - Sharps use the suffix "is" : Cis, Dis, Eis, Fis, Gis, Ais, His
+        - Flats use the suffix "es" : Des, Es, Ges, As, Ces
+        - Note the **two exceptions** at English note designated B is H in German, and Bb is denoted B in German.
+
+        Output in JSON will be in English notation, with B and Bb spelled as B and Bb respectively.
 
         Supported modes: major, natural_minor, harmonic_minor
       tags:
