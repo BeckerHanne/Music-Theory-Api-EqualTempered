@@ -79,6 +79,90 @@ components:
           description: The name of the intervallic inversion (interval + inversion always sum to 9)
           example: "major sixth"
 
+    Triad:
+      type: object
+      properties:
+        root:
+          type: string
+          description: The root note of the chord
+          example: "C"
+        quality:
+          type: string
+          description: The chord quality
+          enum: [maj, min, dim, aug]
+          example: "min"
+        name:
+          type: string
+          description: The full chord name
+          example: "C minor"
+        inversion:
+          type: string
+          description: The inversion of the chord
+          enum: [root position, first inversion, second inversion]
+          example: "first inversion"
+        bass:
+          type: string
+          description: The bass note (lowest note) of the chord
+          example: "Eb"
+        notes:
+          type: array
+          items:
+            type: string
+          description: The notes of the chord in order from bass upward
+          example: ["Eb", "G", "C"]
+        intervals_above_bass:
+          type: array
+          items:
+            type: string
+          description: Intervals measured upward from the bass note
+          example: ["major third", "major sixth"]
+        basso_continuo:
+          type: string
+          description: Full figured bass notation
+          example: "6/3"
+
+    Seventh:
+      type: object
+      properties:
+        root:
+          type: string
+          description: The root note of the chord
+          example: "G"
+        quality:
+          type: string
+          description: The chord quality
+          enum: [dominant7th, major7th, minor7th, half_diminished7th, diminished7th, minor_major7th]
+          example: "dominant7th"
+        name:
+          type: string
+          description: The full chord name
+          example: "G dominant seventh"
+        inversion:
+          type: string
+          description: The inversion of the chord
+          enum: [root position, first inversion, second inversion, third inversion]
+          example: "root position"
+        bass:
+          type: string
+          description: The bass note (lowest note) of the chord
+          example: "G"
+        notes:
+          type: array
+          items:
+            type: string
+          description: The notes of the chord in order from bass upward
+          example: ["G", "B", "D", "F"]
+        intervals_above_bass:
+          type: array
+          items:
+            type: string
+          description: Intervals measured upward from the bass note
+          example: ["major third", "perfect fifth", "minor seventh"]
+        basso_continuo:
+          type: string
+          description: Full figured bass notation
+          example: "7/5/3"
+
 paths:
   /scales/{tonic}/{mode}:
     get:
@@ -131,7 +215,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
 
-# Under paths:
+
   /intervals/{note1}/{note2}:
     get:
       summary: Get the interval between two notes
@@ -180,6 +264,123 @@ paths:
                 $ref: "#/components/schemas/Interval"
         "400":
           description: Invalid note name
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /chords/triads/{root}/{quality}:
+    get:
+      summary: Get a triad
+      description: |
+        Returns the notes, intervals, and figured bass notation for a triad
+        given a root note and quality, with an optional inversion parameter.
+
+        Inputs use German notation (same convention as the scales endpoint):
+        - Sharps use the suffix "is": Fis, Cis, Gis
+        - Flats use the suffix "es": Es, Ges, As
+        - B natural = H, Bb = B
+
+        Output is in English notation.
+      tags:
+        - Chords
+      parameters:
+        - name: root
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The root note of the chord in German notation
+          example: "C"
+        - name: quality
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [maj, min, dim, aug]
+          description: The chord quality
+          example: "min"
+        - name: inversion
+          in: query
+          required: false
+          schema:
+            type: integer
+            enum: [0, 1, 2]
+            default: 0
+          description: |
+            The inversion of the chord.
+            0 = root position (default)
+            1 = first inversion
+            2 = second inversion
+          example: 0
+      responses:
+        "200":
+          description: Triad retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Triad"
+        "400":
+          description: Invalid root, quality, or inversion
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /chords/seventh/{root}/{quality}:
+    get:
+      summary: Get a seventh chord
+      description: |
+        Returns the notes, intervals, and figured bass notation for a seventh
+        chord given a root note and quality, with an optional inversion parameter.
+
+        Inputs use German notation (same convention as the scales endpoint):
+        - Sharps use the suffix "is": Fis, Cis, Gis
+        - Flats use the suffix "es": Es, Ges, As
+        - B natural = H, Bb = B
+
+        Output is in English notation.
+      tags:
+        - Chords
+      parameters:
+        - name: root
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The root note of the chord in German notation
+          example: "G"
+        - name: quality
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [dominant7th, major7th, minor7th, half_diminished7th, diminished7th, minor_major7th]
+          description: The chord quality
+          example: "dominant7th"
+        - name: inversion
+          in: query
+          required: false
+          schema:
+            type: integer
+            enum: [0, 1, 2, 3]
+            default: 0
+          description: |
+            The inversion of the chord.
+            0 = root position (default)
+            1 = first inversion
+            2 = second inversion
+            3 = third inversion
+          example: 0
+      responses:
+        "200":
+          description: Seventh chord retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Seventh"
+        "400":
+          description: Invalid root, quality, or inversion
           content:
             application/json:
               schema:
