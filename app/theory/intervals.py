@@ -45,10 +45,10 @@ def get_interval(note1: str, note2: str) -> dict:
     return {
         "note1": note1,
         "note2": note2,
+        "name": interval_name,
         "diatonic_interval": diatonic,
         "semitones": semitones,
         "quality": quality,
-        "name": interval_name,
         "inversion": inversion_name,
     }
 
