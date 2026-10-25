@@ -56,7 +56,7 @@ def test_triad_inversions(root, quality, inversion, expected_notes, expected_bas
 
 @pytest.mark.parametrize("root,quality,inversion,expected_intervals", [
     ("C", "maj", 0, ["major third", "perfect fifth"]),
-    ("C", "maj", 1, ["minor third", "major sixth"]),
+    ("C", "maj", 1, ["minor third", "minor sixth"]),
     ("C", "maj", 2, ["perfect fourth", "major sixth"]),
     ("C", "min", 0, ["minor third", "perfect fifth"]),
     ("C", "min", 1, ["major third", "major sixth"]),
