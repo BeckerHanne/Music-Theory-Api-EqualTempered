@@ -11,8 +11,8 @@ Historical tuning system support (Pythagorean, quarter-comma meantone, 17th cent
 
 ## Endpoints (v1)
 
-| Endpoint | Description | Status
-|---|---|
+| Endpoint | Description | Status |
+|---|---|---|
 | `GET /scales/{tonic}/{mode}` | Returns notes and scale degrees | Active
 | `GET /chords/{root}/{quality}` | Returns chord tones and intervals | Active
 | `GET /key/{tonic}/{mode}/diatonic-chords` | Returns all diatonic chords with Roman numerals | In progress
