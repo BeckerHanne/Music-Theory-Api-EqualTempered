@@ -14,10 +14,10 @@ Historical tuning system support (Pythagorean, quarter-comma meantone, 17th cent
 | Endpoint | Description | Status |
 |---|---|---|
 | `GET /scales/{tonic}/{mode}` | Returns notes and scale degrees | Active
-| `GET /chords/{root}/{quality}` | Returns chord tones and intervals | Active
+| `GET /chords/{root}/{quality}` | Returns chord tones and intervals | In progress
 | `GET /key/{tonic}/{mode}/diatonic-chords` | Returns all diatonic chords with Roman numerals | In progress
 | `GET /analyze` | Returns Roman numeral analysis of a chord in context | In progress
-| `GET /intervals/{note1}/{note2}` | Returns interval name and quality | In progress
+| `GET /intervals/{note1}/{note2}` | Returns interval name and quality | Active
 
 ## Running the API
 
