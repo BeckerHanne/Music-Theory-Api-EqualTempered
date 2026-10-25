@@ -11,13 +11,13 @@ Historical tuning system support (Pythagorean, quarter-comma meantone, 17th cent
 
 ## Endpoints (v1)
 
-| Endpoint | Description |
+| Endpoint | Description | Status
 |---|---|
-| `GET /scales/{tonic}/{mode}` | Returns notes and scale degrees |
-| `GET /chords/{root}/{quality}` | Returns chord tones and intervals |
-| `GET /key/{tonic}/{mode}/diatonic-chords` | Returns all diatonic chords with Roman numerals |
-| `GET /analyze` | Returns Roman numeral analysis of a chord in context |
-| `GET /intervals/{note1}/{note2}` | Returns interval name and quality |
+| `GET /scales/{tonic}/{mode}` | Returns notes and scale degrees | Active
+| `GET /chords/{root}/{quality}` | Returns chord tones and intervals | Active
+| `GET /key/{tonic}/{mode}/diatonic-chords` | Returns all diatonic chords with Roman numerals | In progress
+| `GET /analyze` | Returns Roman numeral analysis of a chord in context | In progress
+| `GET /intervals/{note1}/{note2}` | Returns interval name and quality | In progress
 
 ## Running the API
 
@@ -49,7 +49,6 @@ python -m pytest app/theory_tests/test_intervals.py -v
 ## Stack
 
 - Python / Flask
-- PostgreSQL
 - OpenAPI / Swagger
 
 
