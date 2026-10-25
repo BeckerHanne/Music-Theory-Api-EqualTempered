@@ -46,6 +46,39 @@ components:
           description: A description of the error
           example: "Invalid tonic: Z"
 
+    Interval:
+      type: object
+      properties:
+        note1:
+          type: string
+          description: The ground note (lower boundary of the interval)
+          example: "A"
+        note2:
+          type: string
+          description: The interval-determining note (measured upward from note1)
+          example: "C"
+        diatonic_interval:
+          type: integer
+          description: The interval number (1=unison, 2=second ... 7=seventh)
+          example: 3
+        semitones:
+          type: integer
+          description: The number of semitones between the two notes
+          example: 3
+        quality:
+          type: string
+          description: The interval quality
+          enum: [perfect, major, minor, augmented, diminished]
+          example: "minor"
+        name:
+          type: string
+          description: The full interval name
+          example: "minor third"
+        inversion:
+          type: string
+          description: The name of the intervallic inversion (interval + inversion always sum to 9)
+          example: "major sixth"
+
 paths:
   /scales/{tonic}/{mode}:
     get:
@@ -93,6 +126,60 @@ paths:
                 $ref: "#/components/schemas/Scale"
         "400":
           description: Invalid tonic or unsupported mode
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+# Under paths:
+  /intervals/{note1}/{note2}:
+    get:
+      summary: Get the interval between two notes
+      description: |
+        Returns the interval between two notes, measured upward from `note1`
+        to `note2`. `note1` is the ground note; `note2` is the interval-determining
+        note. Input order is meaningful: A→C returns a minor third, while C→A
+        returns a major sixth.
+
+        Enharmonically equivalent notes return different results depending
+        on their spelling: C→F# returns an augmented fourth, C→Gb returns
+        a diminished fifth.
+
+        Inputs use German notation (same convention as the scales endpoint):
+        - Sharps use the suffix "is": Fis, Cis, Gis
+        - Flats use the suffix "es": Es, Ges, As
+        - B natural = H, Bb = B
+
+        Output is in English notation.
+      tags:
+        - Intervals
+      parameters:
+        - name: note1
+          in: path
+          required: true
+          schema:
+            type: string
+          description: |
+            The ground note, using German notation.
+          example: "A"
+        - name: note2
+          in: path
+          required: true
+          schema:
+            type: string
+          description: |
+            The interval-determining note, measured upward from note1.
+            Using German notation.
+          example: "C"
+      responses:
+        "200":
+          description: Interval retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Interval"
+        "400":
+          description: Invalid note name
           content:
             application/json:
               schema:
