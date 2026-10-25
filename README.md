@@ -19,6 +19,33 @@ Historical tuning system support (Pythagorean, quarter-comma meantone, 17th cent
 | `GET /analyze` | Returns Roman numeral analysis of a chord in context |
 | `GET /intervals/{note1}/{note2}` | Returns interval name and quality |
 
+## Running the API
+
+```bash
+# Create and activate virtual environment
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Start the server
+python run.py
+```
+
+Swagger UI available at `http://127.0.0.1:3000/api/docs`
+
+## Running test suite
+
+```bash
+# Run all tests
+python -m pytest app/theory_tests/ -v
+
+# Run a specific test file
+python -m pytest app/theory_tests/test_scales.py -v
+python -m pytest app/theory_tests/test_intervals.py -v
+```
+
 ## Stack
 
 - Python / Flask
