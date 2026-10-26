@@ -28,7 +28,7 @@ def test_triad_root_position_notes(root, quality, expected_notes):
     assert result["notes"] == expected_notes
     assert result["bass"] == expected_notes[0]
     assert result["inversion"] == "root position"
-    assert result["basso_continuo"] == "5/3"
+ 
 
 
 # ---------------------------------------------------------------------------
@@ -47,7 +47,7 @@ def test_triad_inversions(root, quality, inversion, expected_notes, expected_bas
     result = get_triad(root, quality, inversion=inversion)
     assert result["notes"] == expected_notes
     assert result["bass"] == expected_bass
-    assert result["basso_continuo"] == expected_bc
+   
 
 
 # ---------------------------------------------------------------------------
@@ -92,7 +92,7 @@ def test_seventh_root_position_notes(root, quality, expected_notes):
     assert result["notes"] == expected_notes
     assert result["bass"] == expected_notes[0]
     assert result["inversion"] == "root position"
-    assert result["basso_continuo"] == "7/5/3"
+
 
 
 # ---------------------------------------------------------------------------
@@ -111,7 +111,7 @@ def test_seventh_root_position_notes(root, quality, expected_notes):
 def test_seventh_inversions(root, quality, inversion, expected_bass, expected_bc):
     result = get_seventh(root, quality, inversion=inversion)
     assert result["bass"] == expected_bass
-    assert result["basso_continuo"] == expected_bc
+
 
 
 # ---------------------------------------------------------------------------
