@@ -45,6 +45,7 @@ python -m pytest app/theory_tests/ -v
 # Run a specific test file
 python -m pytest app/theory_tests/test_scales.py -v
 python -m pytest app/theory_tests/test_intervals.py -v
+python -m pytest app/theory_tests/test_chords.py -v
 ```
 
 ## Stack
