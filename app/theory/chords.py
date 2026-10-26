@@ -108,7 +108,6 @@ def get_triad(root: str, quality: str, inversion: int = 0) -> dict:
         "bass": bass,
         "notes": notes,
         "intervals_above_bass": intervals_above_bass,
-        "basso_continuo": BASSO_CONTINUO_TRIADS[inversion],
     }
 
 SEVENTH_SPELLINGS = {
@@ -255,7 +254,6 @@ def get_seventh(root: str, quality: str, inversion: int = 0) -> dict:
         "bass": bass,
         "notes": notes,
         "intervals_above_bass": intervals_above_bass,
-        "basso_continuo": BASSO_CONTINUO_SEVENTH[inversion],
     }
 
 #if __name__ == "__main__":

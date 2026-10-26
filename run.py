@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request
 from flask.json.provider import DefaultJSONProvider
 from app.theory.scales import get_scale
 from app.theory.intervals import get_interval
+from app.theory.chords import get_triad, get_seventh
 from app.routes.swagger import swagger_bp, get_swagger_ui_blueprint
 
 class OrderedJSONProvider(DefaultJSONProvider):
@@ -57,6 +58,28 @@ def interval(note1, note2):
         return jsonify({'error': 'Two notes are required.'}), 400
     try:
         result = get_interval(note1, note2)
+        return jsonify(result)
+    except ValueError as e:
+        return jsonify({'error': str(e)}), 400
+
+@app.route('/api/chords/triads/<root>/<quality>')
+def triad(root, quality):
+    root = GERMAN_TO_ENGLISH_NOTES.get(root, root)
+    inversion = request.args.get('inversion', 0, type=int)
+
+    try:
+        result = get_triad(root, quality, inversion=inversion)
+        return jsonify(result)
+    except ValueError as e:
+        return jsonify({'error': str(e)}), 400
+
+@app.route('/api/chords/seventh/<root>/<quality>')
+def seventh(root, quality):
+    root = GERMAN_TO_ENGLISH_NOTES.get(root, root)
+    inversion = request.args.get('inversion', 0, type=int)
+
+    try:
+        result = get_seventh(root, quality, inversion=inversion)
         return jsonify(result)
     except ValueError as e:
         return jsonify({'error': str(e)}), 400
