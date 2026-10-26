@@ -3,6 +3,7 @@ from flask.json.provider import DefaultJSONProvider
 from app.theory.scales import get_scale
 from app.theory.intervals import get_interval
 from app.theory.chords import get_triad, get_seventh
+from app.theory.diatonic import get_diatonic_chords
 from app.routes.swagger import swagger_bp, get_swagger_ui_blueprint
 
 class OrderedJSONProvider(DefaultJSONProvider):
@@ -80,6 +81,15 @@ def seventh(root, quality):
 
     try:
         result = get_seventh(root, quality, inversion=inversion)
+        return jsonify(result)
+    except ValueError as e:
+        return jsonify({'error': str(e)}), 400
+
+@app.route('/api/key/<tonic>/<mode>/chords')
+def diatonic_chords(tonic, mode):
+    tonic = GERMAN_TO_ENGLISH_NOTES.get(tonic, tonic)
+    try:
+        result = get_diatonic_chords(tonic, mode)
         return jsonify(result)
     except ValueError as e:
         return jsonify({'error': str(e)}), 400
