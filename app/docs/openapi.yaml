@@ -156,6 +156,64 @@ components:
           description: Intervals measured upward from the bass note
           example: ["major third", "perfect fifth", "minor seventh"]
 
+    DiatonicChords:
+      type: object
+      properties:
+        tonic:
+          type: string
+          description: The tonic note of the key
+          example: "C"
+        mode:
+          type: string
+          description: The mode of the key
+          example: "major"
+        triads:
+          type: array
+          items:
+            type: object
+            properties:
+              degree:
+                type: string
+                description: The Roman numeral scale degree
+                example: "V"
+              root:
+                type: string
+                description: The root note of the chord
+                example: "G"
+              quality:
+                type: string
+                description: The chord quality
+                example: "major"
+              notes:
+                type: array
+                items:
+                  type: string
+                description: The notes of the chord
+                example: ["G", "B", "D"]
+        seventh_chords:
+          type: array
+          items:
+            type: object
+            properties:
+              degree:
+                type: string
+                description: The Roman numeral scale degree with seventh chord symbol
+                example: "V7"
+              root:
+                type: string
+                description: The root note of the chord
+                example: "G"
+              quality:
+                type: string
+                description: The chord quality
+                example: "dominant seventh"
+              notes:
+                type: array
+                items:
+                  type: string
+                description: The notes of the chord
+                example: ["G", "B", "D", "F"]
+
 
 paths:
   /scales/{tonic}/{mode}:
@@ -375,6 +433,53 @@ paths:
                 $ref: "#/components/schemas/Seventh"
         "400":
           description: Invalid root, quality, or inversion
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /key/{tonic}/{mode}/chords:
+    get:
+      summary: Get diatonic chords for a key
+      description: |
+        Returns all diatonic triads and seventh chords for a given tonic and
+        mode, with Roman numeral degree labels.
+
+        Supported modes: major, harmonic_minor
+
+        Inputs use German notation (same convention as the scales endpoint):
+        - Sharps use the suffix "is": Fis, Cis, Gis
+        - Flats use the suffix "es": Es, Ges, As
+        - B natural = H, Bb = B
+
+        Output is in English notation.
+      tags:
+        - Keys
+      parameters:
+        - name: tonic
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The tonic note of the key in German notation
+          example: "C"
+        - name: mode
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [major, harmonic_minor]
+          description: The mode of the key
+          example: "major"
+      responses:
+        "200":
+          description: Diatonic chords retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DiatonicChords"
+        "400":
+          description: Invalid tonic or unsupported mode
           content:
             application/json:
               schema:
