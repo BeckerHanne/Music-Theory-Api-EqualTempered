@@ -116,10 +116,7 @@ components:
             type: string
           description: Intervals measured upward from the bass note
           example: ["major third", "major sixth"]
-        basso_continuo:
-          type: string
-          description: Full figured bass notation
-          example: "6/3"
+
 
     Seventh:
       type: object
@@ -158,10 +155,7 @@ components:
             type: string
           description: Intervals measured upward from the bass note
           example: ["major third", "perfect fifth", "minor seventh"]
-        basso_continuo:
-          type: string
-          description: Full figured bass notation
-          example: "7/5/3"
+
 
 paths:
   /scales/{tonic}/{mode}:
