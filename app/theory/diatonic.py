@@ -37,7 +37,7 @@ DIATONIC_SEVENTHS = {
     "harmonic_minor": [
         {"degree": "imaj7",    "quality": "minor_major7th"},
         {"degree": "ii∅7",     "quality": "half_diminished7th"},
-        {"degree": "III+maj7", "quality": "major7th"},
+        {"degree": "III+maj7", "quality": "aug_maj7"},
         {"degree": "iv7",      "quality": "minor7th"},
         {"degree": "V7",       "quality": "dominant7th"},
         {"degree": "#VImaj7",   "quality": "major7th"},

@@ -204,6 +204,21 @@ SEVENTH_SPELLINGS = {
     ("Bb", "minor_major7th"): ["Bb", "Db", "F",  "A"],
     ("Eb", "minor_major7th"): ["Eb", "Gb", "Bb", "D"],
     ("Ab", "minor_major7th"): ["Ab", "Cb", "Eb", "G"],
+
+        # Augmented major sevenths
+    ("C",  "aug_maj7"): ["C",  "E",  "G#", "B"],
+    ("G",  "aug_maj7"): ["G",  "B",  "D#", "F#"],
+    ("D",  "aug_maj7"): ["D",  "F#", "A#", "C#"],
+    ("A",  "aug_maj7"): ["A",  "C#", "E#", "G#"],
+    ("E",  "aug_maj7"): ["E",  "G#", "B#", "D#"],
+    ("B",  "aug_maj7"): ["B",  "D#", "F##","A#"],
+    ("F#", "aug_maj7"): ["F#", "A#", "C##","E#"],
+    ("F",  "aug_maj7"): ["F",  "A",  "C#", "E"],
+    ("Bb", "aug_maj7"): ["Bb", "D",  "F#", "A"],
+    ("Eb", "aug_maj7"): ["Eb", "G",  "B",  "D"],
+    ("Ab", "aug_maj7"): ["Ab", "C",  "E",  "G"],
+    ("Db", "aug_maj7"): ["Db", "F",  "A",  "C"],
+    ("Gb", "aug_maj7"): ["Gb", "Bb", "D",  "F"],
 }
 
 SEVENTH_QUALITY_NAMES = {
@@ -213,6 +228,7 @@ SEVENTH_QUALITY_NAMES = {
     "half_diminished7th": "half-diminished seventh",
     "diminished7th":      "diminished seventh",
     "minor_major7th":     "minor-major seventh",
+    "aug_maj7":           "augmented major seventh",
 }
 
 INVERSION_NAMES_SEVENTH = {
