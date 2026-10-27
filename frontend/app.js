@@ -98,7 +98,7 @@ document.getElementById('scale-btn').addEventListener('click', async () => {
     const data = await fetch(url).then(r => r.json());
     if (data.error) { showResult('scale-result', `<p class="error">${data.error}</p>`); return; }
 
-    const pills = data.notes
+    const pills = data.scale
       .map((n, i) => `
         <div class="note-pill">
           <span class="degree">${DEGREES[i]}</span>
