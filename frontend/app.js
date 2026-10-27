@@ -115,7 +115,7 @@ document.getElementById('scale-btn').addEventListener('click', async () => {
 document.getElementById('interval-btn').addEventListener('click', async () => {
   const note1 = document.getElementById('interval-note1').value;
   const note2 = document.getElementById('interval-note2').value;
-  const url   = `${API}/interval?note1=${toApi(note1)}&note2=${toApi(note2)}`;
+  const url   = `${API}/intervals/${toApi(note1)}/${toApi(note2)}`;
   showUrl('interval-url', url);
 
   try {
