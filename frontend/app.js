@@ -138,8 +138,8 @@ document.getElementById('chord-btn').addEventListener('click', async () => {
   const root      = document.getElementById('chord-root').value;
   const quality   = document.getElementById('chord-quality').value;
   const inversion = document.getElementById('chord-inversion').value;
-  const endpoint  = currentChordType === 'triad' ? 'chord' : 'seventh';
-  const url       = `${API}/${endpoint}?root=${toApi(root)}&quality=${quality}&inversion=${inversion}`;
+  const endpoint = currentChordType === 'triad' ? 'chords/triads' : 'chords/seventh';
+  const url = `${API}/${endpoint}/${toApi(root)}/${quality}?inversion=${inversion}`;
   showUrl('chord-url', url);
 
   try {
@@ -165,7 +165,7 @@ document.getElementById('chord-btn').addEventListener('click', async () => {
 document.getElementById('diatonic-btn').addEventListener('click', async () => {
   const tonic = document.getElementById('diatonic-tonic').value;
   const mode  = document.getElementById('diatonic-mode').value;
-  const url   = `${API}/diatonic?tonic=${toApi(tonic)}&mode=${mode}`;
+  const url = `${API}/key/${toApi(tonic)}/${mode}/chords`;
   showUrl('diatonic-url', url);
 
   try {
