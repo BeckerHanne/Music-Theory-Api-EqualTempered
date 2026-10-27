@@ -10,12 +10,20 @@ const DEGREES = ['1','2','3','4','5','6','7'];
 const ROMAN   = ['I','II','III','IV','V','VI','VII'];
 
 /* ── Chord quality options ───────────────────────────────────── */
-const TRIAD_QUALITIES   = ['major','minor','diminished','augmented'];
-const SEVENTH_QUALITIES = ['major7','dominant7','minor7','half_diminished','diminished7'];
+const TRIAD_QUALITIES   = ['maj','min','dim','aug'];
+const SEVENTH_QUALITIES = ['dominant7th','major7th','minor7th','half_diminished7th','diminished7th','minor_major7th','aug_maj7'];
 const qualityLabel = q => ({
-  major:'Major', minor:'Minor', diminished:'Diminished', augmented:'Augmented',
-  major7:'Major 7th', dominant7:'Dominant 7th', minor7:'Minor 7th',
-  half_diminished:'Half-diminished', diminished7:'Diminished 7th'
+  maj:                'Major',
+  min:                'Minor',
+  dim:                'Diminished',
+  aug:                'Augmented',
+  dominant7th:        'Dominant 7th',
+  major7th:           'Major 7th',
+  minor7th:           'Minor 7th',
+  half_diminished7th: 'Half-diminished 7th',
+  diminished7th:      'Diminished 7th',
+  minor_major7th:     'Minor-major 7th',
+  aug_maj7:           'Augmented major 7th',
 }[q] ?? q);
 
 /* ── Populate note dropdowns ─────────────────────────────────── */
@@ -96,13 +104,15 @@ document.getElementById('scale-btn').addEventListener('click', async () => {
 
   try {
     const data = await fetch(url).then(r => r.json());
+    console.log(data);
+
     if (data.error) { showResult('scale-result', `<p class="error">${data.error}</p>`); return; }
 
     const pills = data.scale
       .map((n, i) => `
         <div class="note-pill">
           <span class="degree">${DEGREES[i]}</span>
-          <span class="note-name">${toEn(n)}</span>
+          <span class="note-name">${n}</span>
         </div>`)
       .join('');
     showResult('scale-result', `<div class="scale-notes">${pills}</div>`);
@@ -146,10 +156,9 @@ document.getElementById('chord-btn').addEventListener('click', async () => {
     const data = await fetch(url).then(r => r.json());
     if (data.error) { showResult('chord-result', `<p class="error">${data.error}</p>`); return; }
 
-    const bassNote = toEn(data.bass_note);
+    const bassNote = toEn(data.bass);
     const notePills = data.notes.map(n => {
-      const en = toEn(n);
-      return `<span class="chord-note${en === bassNote ? ' bass' : ''}">${en}</span>`;
+      return `<span class="chord-note${n === bassNote ? ' bass' : ''}">${n}</span>`;
     }).join('');
 
     showResult('chord-result', `
@@ -179,9 +188,9 @@ document.getElementById('diatonic-btn').addEventListener('click', async () => {
           ${chords.map((c, i) => `
             <tr>
               <td>${ROMAN[i]}</td>
-              <td>${toEn(c.root)}</td>
+              <td>${(c.root)}</td>
               <td>${qualityLabel(c.quality)}</td>
-              <td>${c.notes.map(toEn).join(' – ')}</td>
+              <td>${c.notes.join(' ')}</td>
             </tr>`).join('')}
         </tbody>
       </table>`;
@@ -189,9 +198,9 @@ document.getElementById('diatonic-btn').addEventListener('click', async () => {
     showResult('diatonic-result', `
       <div class="diatonic-tables">
         <div><h3>Triads</h3>${buildTable(data.triads)}</div>
-        <div><h3>Seventh chords</h3>${buildTable(data.sevenths)}</div>
+        <div><h3>Seventh chords</h3>${buildTable(data.seventh_chords)}</div>
       </div>`);
   } catch (e) {
-    showResult('diatonic-result', `<p class="error">Could not reach the API.</p>`);
+    showResult('diatonic-result', `<p class="error">${e.message}</p>`);
   }
 });

@@ -48,6 +48,7 @@ HARMONIC_MINOR_SPELLINGS = {
     'F':  ['F',  'G',  'Ab', 'Bb', 'C',  'Db', 'E'],
     'Bb': ['Bb', 'C',  'Db', 'Eb', 'F',  'Gb', 'A'],
     'Eb': ['Eb', 'F',  'Gb', 'Ab', 'Bb', 'Cb', 'D'],
+    'Ab': ['Ab', 'Bb', 'Cb', 'Db', 'Eb', 'Fb', 'G'],
 }
 
 def get_scale(tonic: str, mode: str) -> list[str]:

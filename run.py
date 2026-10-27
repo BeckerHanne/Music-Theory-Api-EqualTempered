@@ -22,7 +22,7 @@ app.register_blueprint(swaggerui_blueprint)
 def index():
     return send_from_directory('frontend', 'index.html')
 
-@app.route('/frontend/<path:filename>')
+@app.route('/<path:filename>')
 def frontend_files(filename):
     return send_from_directory('frontend', filename)
 
