@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_from_directory
 from flask.json.provider import DefaultJSONProvider
 from app.theory.scales import get_scale
 from app.theory.intervals import get_interval
@@ -16,6 +16,16 @@ app.json = OrderedJSONProvider(app)  # Initialize the custom JSON provider
 swaggerui_blueprint = get_swagger_ui_blueprint()
 app.register_blueprint(swagger_bp)
 app.register_blueprint(swaggerui_blueprint)
+
+# ── Frontend static serving ──────────────────────────────────
+@app.route('/')
+def index():
+    return send_from_directory('frontend', 'index.html')
+
+@app.route('/frontend/<path:filename>')
+def frontend_files(filename):
+    return send_from_directory('frontend', filename)
+
 
 GERMAN_TO_ENGLISH_NOTES = {
     "C": "C",

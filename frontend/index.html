@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Music Theory API - Equal Tempered v1.0</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <nav class="sidebar">
+    <div class="logo">🎵 Music Theory API - Equal Tempered v1.0</div>
+    <button class="nav-btn active" data-section="scales">Scales</button>
+    <button class="nav-btn" data-section="intervals">Intervals</button>
+    <button class="nav-btn" data-section="chords">Chords</button>
+    <button class="nav-btn" data-section="diatonic">Diatonic Chords</button>
+  </nav>
+
+  <main class="content">
+
+    <!-- ── SCALES ───────────────────────────────────────────── -->
+    <section id="scales" class="section active">
+      <h1>Scales</h1>
+      <p class="subtitle">Choose a key and mode to see the seven scale degrees.</p>
+
+      <div class="controls">
+        <label>
+          Tonic
+          <select id="scale-tonic"></select>
+        </label>
+        <label>
+          Mode
+          <select id="scale-mode">
+            <option value="major">Major</option>
+            <option value="harmonic_minor">Harmonic Minor</option>
+            <option value="natural_minor">Natural Minor</option>
+          </select>
+        </label>
+        <button class="primary-btn" id="scale-btn">Show scale</button>
+      </div>
+
+      <div class="result-area" id="scale-result"></div>
+      <div class="api-url" id="scale-url"></div>
+    </section>
+
+    <!-- ── INTERVALS ─────────────────────────────────────────── -->
+    <section id="intervals" class="section">
+      <h1>Intervals</h1>
+      <p class="subtitle">Select two notes to identify the interval between them.</p>
+
+      <div class="controls">
+        <label>
+          Root note
+          <select id="interval-note1"></select>
+        </label>
+        <label>
+          Second note
+          <select id="interval-note2"></select>
+        </label>
+        <button class="primary-btn" id="interval-btn">Identify interval</button>
+      </div>
+
+      <div class="result-area" id="interval-result"></div>
+      <div class="api-url" id="interval-url"></div>
+    </section>
+
+    <!-- ── CHORDS ────────────────────────────────────────────── -->
+    <section id="chords" class="section">
+      <h1>Chords</h1>
+      <p class="subtitle">Build a chord by choosing its root, type, and voicing.</p>
+
+      <div class="controls">
+        <label>
+          Chord type
+          <div class="toggle-group">
+            <button class="toggle-btn active" data-type="triad">Triad</button>
+            <button class="toggle-btn" data-type="seventh">Seventh</button>
+          </div>
+        </label>
+        <label>
+          Root
+          <select id="chord-root"></select>
+        </label>
+        <label>
+          Quality
+          <select id="chord-quality"></select>
+        </label>
+        <label>
+          Inversion
+          <select id="chord-inversion">
+            <option value="0">Root position</option>
+            <option value="1">1st inversion</option>
+            <option value="2">2nd inversion</option>
+            <option value="3">3rd inversion</option>
+          </select>
+        </label>
+        <button class="primary-btn" id="chord-btn">Build chord</button>
+      </div>
+
+      <div class="result-area" id="chord-result"></div>
+      <div class="api-url" id="chord-url"></div>
+    </section>
+
+    <!-- ── DIATONIC CHORDS ───────────────────────────────────── -->
+    <section id="diatonic" class="section">
+      <h1>Diatonic Chords</h1>
+      <p class="subtitle">All chords that naturally belong to a key.</p>
+
+      <div class="controls">
+        <label>
+          Tonic
+          <select id="diatonic-tonic"></select>
+        </label>
+        <label>
+          Mode
+          <select id="diatonic-mode">
+            <option value="major">Major</option>
+            <option value="harmonic_minor">Harmonic Minor</option>
+          </select>
+        </label>
+        <button class="primary-btn" id="diatonic-btn">Show chords</button>
+      </div>
+
+      <div class="result-area" id="diatonic-result"></div>
+      <div class="api-url" id="diatonic-url"></div>
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
