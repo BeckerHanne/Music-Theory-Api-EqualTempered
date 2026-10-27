@@ -9,6 +9,9 @@ TRIAD_SPELLINGS = {
     ("B",  "maj"): ["B",  "D#", "F#"],
     ("F#", "maj"): ["F#", "A#", "C#"],
     ("C#", "maj"): ["C#", "E#", "G#"],
+    ("G#", "maj"): ["G#", "B#", "D#"],
+    ("D#", "maj"): ["D#", "F##", "A#"],
+    ("E#", "min"): ["E#", "G#", "B#"],
     ("F",  "maj"): ["F",  "A",  "C"],
     ("Bb", "maj"): ["Bb", "D",  "F"],
     ("Eb", "maj"): ["Eb", "G",  "Bb"],
@@ -16,6 +19,7 @@ TRIAD_SPELLINGS = {
     ("Db", "maj"): ["Db", "F",  "Ab"],
     ("Gb", "maj"): ["Gb", "Bb", "Db"],
     ("Cb", "maj"): ["Cb", "Eb", "Gb"],
+    ("Fb", "maj"): ["Fb", "Ab", "Cb"],
 
     ("C",  "min"): ["C",  "Eb", "G"],
     ("G",  "min"): ["G",  "Bb", "D"],
@@ -32,6 +36,7 @@ TRIAD_SPELLINGS = {
     ("Bb", "min"): ["Bb", "Db", "F"],
     ("Eb", "min"): ["Eb", "Gb", "Bb"],
     ("Ab", "min"): ["Ab", "Cb", "Eb"],
+    ("Db", "min"): ["Db", "Fb", "Ab"],
 
     ("C",  "dim"): ["C",  "Eb", "Gb"],
     ("G",  "dim"): ["G",  "Bb", "Db"],
@@ -45,9 +50,11 @@ TRIAD_SPELLINGS = {
     ("D#", "dim"): ["D#", "F#", "A"],
     ("A#", "dim"): ["A#", "C#", "E"],
     ("E#", "dim"): ["E#", "G#", "B"],
+    ("B#", "dim"): ["B#", "D#", "F#"],
     ("F",  "dim"): ["F",  "Ab", "Cb"],
     ("Bb", "dim"): ["Bb", "Db", "Fb"],
     ("Eb", "dim"): ["Eb", "Gb", "Bbb"],
+    ("F##", "dim"): ["F##", "A#", "C#"],
 
     ("C",  "aug"): ["C",  "E",  "G#"],
     ("G",  "aug"): ["G",  "B",  "D#"],
@@ -121,6 +128,8 @@ SEVENTH_SPELLINGS = {
     ("B",  "dominant7th"): ["B",  "D#", "F#", "A"],
     ("F#", "dominant7th"): ["F#", "A#", "C#", "E"],
     ("C#", "dominant7th"): ["C#", "E#", "G#", "B"],
+    ("G#", "dominant7th"): ["G#", "B#", "D#", "F#"],
+    ("D#", "dominant7th"): ["D#", "F##", "A#", "C#"],
     ("F",  "dominant7th"): ["F",  "A",  "C",  "Eb"],
     ("Bb", "dominant7th"): ["Bb", "D",  "F",  "Ab"],
     ("Eb", "dominant7th"): ["Eb", "G",  "Bb", "Db"],
@@ -137,6 +146,7 @@ SEVENTH_SPELLINGS = {
     ("B",  "major7th"): ["B",  "D#", "F#", "A#"],
     ("F#", "major7th"): ["F#", "A#", "C#", "E#"],
     ("C#", "major7th"): ["C#", "E#", "G#", "B#"],
+    ("D#", "major7th"): ["D#", "F##", "A#", "C##"],
     ("F",  "major7th"): ["F",  "A",  "C",  "E"],
     ("Bb", "major7th"): ["Bb", "D",  "F",  "A"],
     ("Eb", "major7th"): ["Eb", "G",  "Bb", "D"],
@@ -144,6 +154,7 @@ SEVENTH_SPELLINGS = {
     ("Db", "major7th"): ["Db", "F",  "Ab", "C"],
     ("Gb", "major7th"): ["Gb", "Bb", "Db", "F"],
     ("Cb", "major7th"): ["Cb", "Eb", "Gb", "Bb"],
+    ("Fb", "major7th"): ["Fb", "Ab", "Cb", "Eb"],
 
     # Minor sevenths
     ("C",  "minor7th"): ["C",  "Eb", "G",  "Bb"],
@@ -157,10 +168,12 @@ SEVENTH_SPELLINGS = {
     ("G#", "minor7th"): ["G#", "B",  "D#", "F#"],
     ("D#", "minor7th"): ["D#", "F#", "A#", "C#"],
     ("A#", "minor7th"): ["A#", "C#", "E#", "G#"],
+    ("E#", "minor7th"): ["E#", "G#", "B#", "D#"],
     ("F",  "minor7th"): ["F",  "Ab", "C",  "Eb"],
     ("Bb", "minor7th"): ["Bb", "Db", "F",  "Ab"],
     ("Eb", "minor7th"): ["Eb", "Gb", "Bb", "Db"],
     ("Ab", "minor7th"): ["Ab", "Cb", "Eb", "Gb"],
+    ("Db", "minor7th"): ["Db", "Fb", "Ab", "Cb"],
 
     # Half-diminished sevenths
     ("C",  "half_diminished7th"): ["C",  "Eb", "Gb", "Bb"],
@@ -173,6 +186,9 @@ SEVENTH_SPELLINGS = {
     ("C#", "half_diminished7th"): ["C#", "E",  "G",  "B"],
     ("G#", "half_diminished7th"): ["G#", "B",  "D",  "F#"],
     ("E#", "half_diminished7th"): ["E#", "G#", "B", "D#"],
+    ("A#", "half_diminished7th"): ["A#", "C#", "E", "G#"],
+    ("D#", "half_diminished7th"): ["D#", "F#", "A", "C#"],
+    ("B#", "half_diminished7th"): ["B#", "D#", "F#", "A#"],
     ("F",  "half_diminished7th"): ["F",  "Ab", "Cb", "Eb"],
     ("Bb", "half_diminished7th"): ["Bb", "Db", "Fb", "Ab"],
     ("Eb", "half_diminished7th"): ["Eb", "Gb", "Bbb","Db"],
@@ -189,8 +205,11 @@ SEVENTH_SPELLINGS = {
     ("G#", "diminished7th"): ["G#", "B",  "D",  "F"],
     ("D#", "diminished7th"): ["D#", "F#", "A",  "C"],
     ("A#", "diminished7th"): ["A#", "C#", "E",  "G"],
+    ("B#", "diminished7th"): ["B#", "D#", "F#", "A"],
+    ("E#", "diminished7th"): ["E#", "G#", "B", "D"],
     ("F",  "diminished7th"): ["F",  "Ab", "Cb", "Ebb"],
     ("Bb", "diminished7th"): ["Bb", "Db", "Fb", "Abb"],
+    ("F##", "diminished7th"): ["F##", "A#", "C#", "E"],
 
     # Minor-major sevenths
     ("C",  "minor_major7th"): ["C",  "Eb", "G",  "B"],

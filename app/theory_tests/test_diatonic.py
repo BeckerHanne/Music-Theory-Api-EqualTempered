@@ -172,3 +172,21 @@ def test_unsupported_mode_raises():
 def test_invalid_tonic_raises():
     with pytest.raises(ValueError):
         get_diatonic_chords("X", "major")
+
+
+@pytest.mark.parametrize("tonic,mode", [
+    ("C",  "major"), ("G",  "major"), ("D",  "major"), ("A",  "major"),
+    ("E",  "major"), ("B",  "major"), ("F#", "major"), ("C#", "major"),
+    ("F",  "major"), ("Bb", "major"), ("Eb", "major"), ("Ab", "major"),
+    ("Db", "major"), ("Gb", "major"), ("Cb", "major"),
+    ("A",  "harmonic_minor"), ("E",  "harmonic_minor"), ("B",  "harmonic_minor"),
+    ("F#", "harmonic_minor"), ("C#", "harmonic_minor"), ("G#", "harmonic_minor"),
+    ("D",  "harmonic_minor"), ("G",  "harmonic_minor"), ("C",  "harmonic_minor"),
+    ("F",  "harmonic_minor"), ("Bb", "harmonic_minor"), ("Eb", "harmonic_minor"),
+])
+def test_all_keys_no_error(tonic, mode):
+    result = get_diatonic_chords(tonic, mode)
+    assert "triads" in result
+    assert "seventh_chords" in result
+    assert len(result["triads"]) == 7
+    assert len(result["seventh_chords"]) == 7

@@ -19,6 +19,7 @@ app.register_blueprint(swaggerui_blueprint)
 
 GERMAN_TO_ENGLISH_NOTES = {
     "C": "C",
+    "Ces": "Cb",
     "Cis": "C#",
     "Des": "Db",
     "D": "D",
