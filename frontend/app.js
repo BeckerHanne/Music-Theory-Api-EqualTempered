@@ -91,7 +91,7 @@ function showResult(elId, html) {
 document.getElementById('scale-btn').addEventListener('click', async () => {
   const tonic = document.getElementById('scale-tonic').value;
   const mode  = document.getElementById('scale-mode').value;
-  const url   = `${API}/scale?tonic=${toApi(tonic)}&mode=${mode}`;
+  const url   = `${API}/scales/${toApi(tonic)}/${mode}`;
   showUrl('scale-url', url);
 
   try {
