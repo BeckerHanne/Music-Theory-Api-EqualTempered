@@ -11,7 +11,7 @@ Historical tuning system support (Pythagorean, quarter-comma meantone, 17th cent
 
 ## Frontend
 
-A musician-friendly web interface is included at `http://127.0.0.1:3000` when the server is running. It provides a clean, interactive UI for all four endpoints without exposing any JSON or technical details.
+A musician-friendly web interface is included at `http://localhost:3000` when the server is running. It provides a clean, interactive UI for all four endpoints without exposing any JSON or technical details.
 
 **Sections:**
 - **Scales** — choose a tonic and mode to display the seven scale degrees
