@@ -9,6 +9,20 @@ It does not — and at this stage cannot — capture the full complexity of West
 
 Historical tuning system support (Pythagorean, quarter-comma meantone, 17th century temperaments) is planned for a future version.
 
+## Frontend
+
+A musician-friendly web interface is included at `http://127.0.0.1:3000` when the server is running. It provides a clean, interactive UI for all four endpoints without exposing any JSON or technical details.
+
+**Sections:**
+- **Scales** — choose a tonic and mode to display the seven scale degrees
+- **Intervals** — select two notes to identify the interval between them
+- **Chords** — build triads and seventh chords by root, quality, and inversion
+- **Diatonic Chords** — view all triads and seventh chords belonging to a key, with Roman numerals
+
+Built with plain HTML, CSS, and JavaScript (no framework or build step required). 
+Served statically by Flask from the `frontend/` directory.
+
+
 ## Endpoints (v1)
 
 | Endpoint | Description | Status |
@@ -53,7 +67,7 @@ python -m pytest app/theory_tests/test_diatonic.py -v
 
 - Python / Flask
 - OpenAPI / Swagger
-
+- HTML / CSS / JavaScript (frontend)
 
 ## Author
 
